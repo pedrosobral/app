@@ -1,17 +1,35 @@
 {
-  "question": [
+  "questions": [
     {
       "text": "Calcule",
       "image": "int-q1.svg",
       "steps": [
         {
-          "text": "Para começar, qual a substituição adequada:",
+          "text": "Vamos começar por partes. Primeiro responda qual a substituição mais adequada para resolver essa integral:",
           "options": [
-            "int-q1-opt1.svg",
-            "int-q1-opt2.svg",
-            "int-q1-opt3.svg"
+            "int-q1-opt11.svg",
+            "int-q1-opt12.svg",
+            "int-q1-opt13.svg"
+          ],
+          "answer": 0
+        },
+        {
+          "text": "Muito bem! Agora como vai ficar a integral depois da substituição:",
+          "options": [
+            "int-q1-opt22.svg",
+            "int-q1-opt21.svg",
+            "int-q1-opt23.svg"
           ],
           "answer": 1
+        },
+        {
+          "text": "Agora ficou fácil! Qual a resposta da integração:",
+          "options": [
+            "int-q1-opt32.svg",
+            "int-q1-opt33.svg",
+            "int-q1-opt31.svg"
+          ],
+          "answer": 2
         }
       ]
     },
