@@ -1,0 +1,34 @@
+{
+  "question": [
+    {
+      "text": "Calcule",
+      "image": "int-q1.svg",
+      "steps": [
+        {
+          "text": "Para começar, qual a substituição adequada:",
+          "options": [
+            "int-q1-opt1.svg",
+            "int-q1-opt2.svg",
+            "int-q1-opt3.svg"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "text": "Calcule",
+      "image": "int-q2.svg",
+      "steps": [
+        {
+          "text": "Qual a substituição adequada:",
+          "options": [
+            "int-q2-opt1.svg",
+            "int-q2-opt2.svg",
+            "int-q2-opt3.svg"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}
