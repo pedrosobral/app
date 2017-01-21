@@ -6,5 +6,21 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  <!-- enunciado -->
+  <div class="pergunta" *ngIf="question">
+    <span>{{question.text}}</span>
+    <div>
+      <img [src]="getImage(question.image)">
+    </div>
+  </div>
+
+  <!-- opcoes -->
+  <ion-list *ngIf="question">
+    <span>{{options.text}}</span>
+    <ion-item *ngFor="let opt of options.options; let i = index" (click)="answer(i)">
+      <img [src]="getImage(opt)">
+    </ion-item>
+  </ion-list>
 </ion-content>
