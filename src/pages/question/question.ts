@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
+ } from '@angular/core';
 
 import { NavController, ToastController } from 'ionic-angular';
 
@@ -6,7 +14,21 @@ import { Questions } from '../../providers/questions';
 
 @Component({
   selector: 'page-question',
-  templateUrl: 'question.html'
+  templateUrl: 'question.html',
+  animations: [
+    trigger('questionChange', [
+      state('sim' , style({
+        // opacity: 1
+      })),
+      state('nao', style({
+        // opacity: 0
+      })),
+      transition('* => sim', animate('1000ms ease-in-out', keyframes([
+        style({transform: 'rotate3d(0, 0, 1, -360deg)', opacity: '0.5', transformOrigin: 'center', offset: 0}),
+        style({transform: 'none', opacity: '1', transformOrigin: 'center', offset: 1})
+      ]))),
+    ])
+  ]
 })
 export class QuestionPage {
   // user choice
@@ -37,6 +59,9 @@ export class QuestionPage {
 
   // nextQuestion
   isNextQuestion: boolean;
+
+  // questions change
+  questionChange: string = 'nao';
 
   constructor(
     public navCtrl: NavController,
@@ -97,18 +122,20 @@ export class QuestionPage {
     this.addPreviousQuestions(this.options.options[this.choice]);
     this.presentToast('CORRETO! :)', 'success');
 
-    this.playSound('right_answer')
+    this.playSound('right_answer');
   }
 
   playSound(type) {
     const audio = new Audio();
-    audio.src = './assets/sounds/type.mp3'.replace(/type/g, type);
+    audio.src = `./assets/sounds/${type}.mp3`;
     audio.load();
     audio.play();
   }
 
   nextQuestion() {
     this.isNextQuestion = false;
+    this.questionChange = 'sim';
+    setTimeout(() => this.questionChange = 'nao', 1000);
 
     this.setQuestion();
     this.setOptions();
