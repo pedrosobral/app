@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 
 import { Questions } from '../../providers/questions';
 
@@ -9,6 +9,14 @@ import { Questions } from '../../providers/questions';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  // user choice
+  choice: number;
+
+  // total
+  saturation: number = 0;
+
+  gameMode: string = 'answer';
+
   // all questions
   questions: any;
 
@@ -20,31 +28,61 @@ export class HomePage {
   // and options
   options: any;
 
-  constructor(public navCtrl: NavController, public q: Questions) {
+  // total questions
+  totalQuestions: number = 0;
+
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public q: Questions) {
 
     this.q.load().subscribe((data) => {
       this.questions = data.questions;
+      this.totalQuestions = this.countSteps();
 
       this.setQuestion();
       this.setOptions();
     });
   }
 
-  answer(option) {
-    if (this.isAnswerCorrect(option)) {
+  countSteps() {
+    let count = 0;
+    this.questions.forEach(q => {
+      count += q.steps.length;
+    });
+    return count;
+  }
+
+  answer() {
+    if (this.isAnswerCorrect(this.choice)) {
+      this.saturation += Math.floor(100/this.totalQuestions);
       if (this.isQuestionOver()) {
-        this.setQuestion();
-        this.setOptions();
+        if (!this.isGameOver()) {
+          this.setQuestion();
+          this.setOptions();
+        } else {
+          this.saturation = 100;
+          alert('PARABENS.');
+        }
       } else {
-        this.setOptions();
+        this.gameMode = 'continue';
+        this.presentToast('CORRETO! :)', 'success');
       }
     } else {
-      alert("Resposta errada")
+      this.presentToast('ERRADO! :(', 'error');
     }
+  }
+
+  continue() {
+    this.setOptions();
   }
 
   isQuestionOver() {
     return this.options.options.length == this.QUESTION_OPTIONS_INDEX;
+  }
+
+  isGameOver() {
+    return this.questions.length === this.QUESTION_INDEX;
   }
 
   isAnswerCorrect(option) {
@@ -58,10 +96,21 @@ export class HomePage {
 
   setOptions() {
     this.options = this.question.steps[this.QUESTION_OPTIONS_INDEX++];
+
+    this.gameMode = 'answer';
   }
 
   getImage(src) {
-    return `/assets/questions/${src}`;
+    return `assets/questions/${src}`;
   }
 
+  presentToast(msg, type) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+      position: 'middle',
+      cssClass: type,
+    });
+    toast.present();
+  }
 }

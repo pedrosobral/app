@@ -1,11 +1,29 @@
 page-home {
+  font-family: 'Indie Flower', cursive;
+  font-size: 18px;
+
   .pergunta {
+    // margin-top: 35px;
+    // position: absolute;
     text-align: center;
-    border-style: dashed;
+    font-size: 20px;
+    width: 100%;
 
     img {
-      height: 100px;
-      width: 100px;
+      height: 150px;
+      width: 150px;
     }
   }
+
+  .papiro {
+    text-align: center;
+  }
+}
+
+ion-toast.success .toast-wrapper {
+  background: #32db64;
+}
+
+ion-toast.error .toast-wrapper {
+  background: red;
 }

@@ -9,9 +9,7 @@ import 'rxjs/add/observable/of';
 export class Questions {
   data: any;
 
-  constructor(public http: Http) {
-    console.info('Questions Provider');
-  }
+  constructor(public http: Http) { }
 
   load(): Observable<any> {
     if (this.data) {

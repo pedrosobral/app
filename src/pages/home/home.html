@@ -1,12 +1,15 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
       PEMD APP
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content padding>
+  <ion-range min="0" max="100" [ngModel]="saturation" color="secondary">
+        <ion-label range-right>100</ion-label>
+  </ion-range>
 
   <!-- enunciado -->
   <div class="pergunta" *ngIf="question">
@@ -16,11 +19,24 @@
     </div>
   </div>
 
+  <!-- <div class="papiro">
+    <img src="assets/papiro1.png" alt="">
+  </div> -->
+
   <!-- opcoes -->
-  <ion-list *ngIf="question">
+  <ion-list *ngIf="question" radio-group [(ngModel)]="choice">
     <span>{{options.text}}</span>
-    <ion-item *ngFor="let opt of options.options; let i = index" (click)="answer(i)">
-      <img [src]="getImage(opt)">
+    <ion-item *ngFor="let opt of options.options; let i = index">
+      <ion-label>
+        <img [src]="getImage(opt)">
+      </ion-label>
+      <ion-radio value="{{i}}"></ion-radio>
     </ion-item>
   </ion-list>
+
+  <div [ngSwitch]="gameMode">
+    <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full>ENVIAR</button>
+    <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full>CONTINUAR</button>
+  </div>
+
 </ion-content>

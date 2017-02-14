@@ -1,52 +1,72 @@
 {
   "questions": [
     {
-      "text": "Calcule",
-      "image": "int-q1.svg",
+      "type": "int-subs",
+      "text": "",
+      "image": "int-subs/q1/q.svg",
       "steps": [
         {
           "text": "Vamos começar por partes. Primeiro responda qual a substituição mais adequada para resolver essa integral:",
           "options": [
-            "int-q1-opt11.svg",
-            "int-q1-opt12.svg",
-            "int-q1-opt13.svg"
+            "int-subs/q1/opt11.svg",
+            "int-subs/q1/opt12.svg",
+            "int-subs/q1/opt13.svg"
           ],
           "answer": 0
         },
         {
           "text": "Muito bem! Agora como vai ficar a integral depois da substituição:",
           "options": [
-            "int-q1-opt22.svg",
-            "int-q1-opt21.svg",
-            "int-q1-opt23.svg"
+            "int-subs/q1/opt22.svg",
+            "int-subs/q1/opt21.svg",
+            "int-subs/q1/opt23.svg"
           ],
           "answer": 1
         },
         {
           "text": "Agora ficou fácil! Qual a resposta da integração:",
           "options": [
-            "int-q1-opt32.svg",
-            "int-q1-opt33.svg",
-            "int-q1-opt31.svg"
+            "int-subs/q1/opt32.svg",
+            "int-subs/q1/opt33.svg",
+            "int-subs/q1/opt31.svg"
           ],
           "answer": 2
         }
       ]
     },
     {
-      "text": "Calcule",
-      "image": "int-q2.svg",
+      "type": "int-subs",
+      "text": "",
+      "image": "int-subs/q2/q.svg",
       "steps": [
         {
-          "text": "Qual a substituição adequada:",
+          "text": "Qual a substituição mais adequada para resolver essa integral:",
           "options": [
-            "int-q2-opt1.svg",
-            "int-q2-opt2.svg",
-            "int-q2-opt3.svg"
+            "int-subs/q2/opt11.svg",
+            "int-subs/q2/opt12.svg",
+            "int-subs/q2/opt13.svg"
+          ],
+          "answer": 0
+        },
+        {
+          "text": "Boa! Agora como vai ficar a integral depois da substituição:",
+          "options": [
+            "int-subs/q2/opt21.svg",
+            "int-subs/q2/opt22.svg",
+            "int-subs/q2/opt23.svg"
           ],
           "answer": 1
+        },
+        {
+          "text": "Bravo! Qual a resposta da integração:",
+          "options": [
+            "int-subs/q2/opt31.svg",
+            "int-subs/q2/opt32.svg",
+            "int-subs/q2/opt33.svg"
+          ],
+          "answer": 0
         }
       ]
     }
-  ]
+    ]
 }
