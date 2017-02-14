@@ -20,7 +20,7 @@
   </div>
 
   <!-- enunciado -->
-  <div class="pergunta">
+  <div class="pergunta" [@questionChange]="questionChange">
     <span>{{question?.text}}</span>
     <div>
       <img [src]="getImage(question?.image)">
