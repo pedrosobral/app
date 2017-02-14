@@ -12,12 +12,18 @@
 </ion-header>
 
 <ion-content padding>
+  <div class="previous-questions">
+    <span *ngFor="let p of previousQuestions; let first = first">
+      <img class="helper" *ngIf="!first" src="./assets/icon/rightArrow.svg">
+      <img class="helper" [src]="getImage(p)">
+    </span>
+  </div>
 
   <!-- enunciado -->
-  <div class="pergunta" *ngIf="question">
-    <span>{{question.text}}</span>
+  <div class="pergunta">
+    <span>{{question?.text}}</span>
     <div>
-      <img [src]="getImage(question.image)">
+      <img [src]="getImage(question?.image)">
     </div>
   </div>
 

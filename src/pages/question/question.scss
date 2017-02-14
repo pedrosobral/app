@@ -6,8 +6,8 @@ page-question {
     // margin-top: 35px;
     // position: absolute;
     text-align: center;
-    font-size: 20px;
     width: 100%;
+    margin-top: -20px;
 
     img {
       height: 150px;
@@ -15,8 +15,10 @@ page-question {
     }
   }
 
-  .papiro {
-    text-align: center;
+  .helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
   }
 }
 

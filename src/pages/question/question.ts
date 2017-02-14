@@ -25,11 +25,18 @@ export class QuestionPage {
 
   // actual questions
   question: any;
+
   // and options
   options: any;
 
   // total questions
   totalQuestions: number = 0;
+
+  // previous questions
+  previousQuestions = [];
+
+  // nextQuestion
+  isNextQuestion: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -55,26 +62,66 @@ export class QuestionPage {
 
   answer() {
     if (this.isAnswerCorrect(this.choice)) {
-      this.saturation += Math.floor(100/this.totalQuestions);
+      this.saturation += Math.floor(100 / this.totalQuestions);
+
       if (this.isQuestionOver()) {
         if (!this.isGameOver()) {
-          this.setQuestion();
-          this.setOptions();
+          this.isNextQuestion = true;
+          this.correctAnswer();
         } else {
-          this.saturation = 100;
-          alert('PARABENS.');
+          this.activityIsOver();
         }
       } else {
-        this.gameMode = 'continue';
-        this.presentToast('CORRETO! :)', 'success');
+        this.correctAnswer();
       }
     } else {
-      this.presentToast('ERRADO! :(', 'error');
+      this.wrongAnswer();
     }
   }
 
-  continue() {
+  activityIsOver() {
+    this.saturation = 100;
+    this.presentToast('PARABÉNS! :(', 'success');
+
+    this.playSound('level_up');
+  }
+
+  wrongAnswer() {
+    this.presentToast('ERRADO! :(', 'error');
+
+    this.playSound('wrong_answer');
+  }
+
+  correctAnswer() {
+    this.gameMode = 'continue';
+    this.addPreviousQuestions(this.options.options[this.choice]);
+    this.presentToast('CORRETO! :)', 'success');
+
+    this.playSound('right_answer')
+  }
+
+  playSound(type) {
+    const audio = new Audio();
+    audio.src = './assets/sounds/type.mp3'.replace(/type/g, type);
+    audio.load();
+    audio.play();
+  }
+
+  nextQuestion() {
+    this.isNextQuestion = false;
+
+    this.setQuestion();
     this.setOptions();
+
+    this.clearPreviousQuestions();
+  }
+
+  continue() {
+    if (!this.isNextQuestion) {
+      this.setOptions();
+    } else {
+      this.nextQuestion();
+    }
   }
 
   isQuestionOver() {
@@ -112,6 +159,14 @@ export class QuestionPage {
       cssClass: type,
     });
     toast.present();
+  }
+
+  addPreviousQuestions(question) {
+    this.previousQuestions.push(question);
+  }
+
+  clearPreviousQuestions() {
+    this.previousQuestions = [];
   }
 
   dismiss() {
