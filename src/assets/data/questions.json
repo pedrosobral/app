@@ -4,7 +4,7 @@
       "text": "",
       "image": "int-subs/q1/q.svg",
       "steps": [{
-          "text": "Vamos começar por partes. Primeiro responda qual a substituição mais adequada para resolver essa integral:",
+          "text": "Vamos começar por partes. Primeiro responda qual a técnica mais adequada para resolver essa integral:",
           "options": [
             "int-subs/q1/opt11.svg",
             "int-subs/q1/opt12.svg",
@@ -13,7 +13,7 @@
           "answer": 0
         },
         {
-          "text": "Muito bem! Agora como vai ficar a integral depois da substituição:",
+          "text": "Muito bem! Agora como vai ficar a integral:",
           "options": [
             "int-subs/q1/opt22.svg",
             "int-subs/q1/opt21.svg",
@@ -37,7 +37,7 @@
       "text": "",
       "image": "int-subs/q2/q.svg",
       "steps": [{
-          "text": "Qual a substituição mais adequada para resolver essa integral:",
+          "text": "Qual a técnica mais adequada para resolver essa integral:",
           "options": [
             "int-subs/q2/opt11.svg",
             "int-subs/q2/opt12.svg",
@@ -46,7 +46,7 @@
           "answer": 0
         },
         {
-          "text": "Boa! Agora como vai ficar a integral depois da substituição:",
+          "text": "Boa! Agora como vai ficar a integral:",
           "options": [
             "int-subs/q2/opt21.svg",
             "int-subs/q2/opt22.svg",
@@ -70,7 +70,7 @@
       "text": "",
       "image": "int-subs/q2/q.svg",
       "steps": [{
-          "text": "Qual a substituição mais adequada para resolver essa integral:",
+          "text": "Qual a técnica mais adequada para resolver essa integral:",
           "options": [
             "int-subs/q2/opt11.svg",
             "int-subs/q2/opt12.svg",
@@ -79,7 +79,7 @@
           "answer": 0
         },
         {
-          "text": "Boa! Agora como vai ficar a integral depois da substituição:",
+          "text": "Boa! Agora como vai ficar a integral:",
           "options": [
             "int-subs/q2/opt21.svg",
             "int-subs/q2/opt22.svg",
