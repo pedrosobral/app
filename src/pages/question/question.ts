@@ -113,4 +113,8 @@ export class QuestionPage {
     });
     toast.present();
   }
+
+  dismiss() {
+    this.navCtrl.pop();
+  }
 }

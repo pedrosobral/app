@@ -1,7 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-range min="0" max="100" [ngModel]="saturation" color="secondary">
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content padding>
-  <ion-range min="0" max="100" [ngModel]="saturation" color="secondary">
-    <ion-label range-right>100</ion-label>
-  </ion-range>
 
   <!-- enunciado -->
   <div class="pergunta" *ngIf="question">
