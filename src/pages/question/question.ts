@@ -8,7 +8,15 @@ import {
   keyframes
  } from '@angular/core';
 
-import { NavController, ToastController } from 'ionic-angular';
+import {
+  NavController,
+  ToastController,
+  ModalController,
+} from 'ionic-angular';
+
+import {
+  EndActivityPage,
+} from '../end-activity/end-activity';
 
 import { Questions } from '../../providers/questions';
 
@@ -65,6 +73,7 @@ export class QuestionPage {
 
   constructor(
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public toastCtrl: ToastController,
     public q: Questions) {
 
@@ -105,10 +114,10 @@ export class QuestionPage {
   }
 
   activityIsOver() {
-    this.saturation = 100;
-    this.presentToast('PARABÉNS! :(', 'success');
-
     this.playSound('level_up');
+    this.modalCtrl.create(EndActivityPage, { level: 'easy', points: 200 }).present();
+    // this.presentToast('PARABÉNS! :(', 'success');
+
   }
 
   wrongAnswer() {
