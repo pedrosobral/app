@@ -79,6 +79,8 @@ export class QuestionPage {
 
     this.q.load().subscribe((data) => {
       this.questions = data;
+
+      console.info('questions', this.questions);
       this.totalQuestions = this.countSteps();
 
       this.setQuestion();
@@ -94,8 +96,8 @@ export class QuestionPage {
     return count;
   }
 
-  answer() {
-    if (this.isAnswerCorrect(this.choice)) {
+  answer(isToContinue?) {
+    if (isToContinue || this.isAnswerCorrect(this.choice)) {
       this.saturation += Math.floor(100 / this.totalQuestions);
 
       if (this.isQuestionOver()) {
@@ -159,7 +161,7 @@ export class QuestionPage {
   }
 
   isQuestionOver() {
-    return this.options.options.length == this.QUESTION_OPTIONS_INDEX;
+    return this.QUESTION_OPTIONS_INDEX >= this.question.steps.length;
   }
 
   isGameOver() {
@@ -179,6 +181,14 @@ export class QuestionPage {
     this.options = this.question.steps[this.QUESTION_OPTIONS_INDEX++];
 
     this.gameMode = 'answer';
+    if (this.options && this.options.options.length === 1) {
+      this.gameMode = 'entendi';
+    }
+  }
+
+  entendi() {
+    this.question.image = this.options.options[0];
+    this.answer(true);
   }
 
   getImage(src) {

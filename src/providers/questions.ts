@@ -40,11 +40,9 @@ export class Questions {
         text: q[4],
         image: `${path}/q.svg`,
         steps: this.getQuestions(q[2], q[3], path),
-        result: this.getResult(q[5], path),
+        // result: this.getResult(q[5], path),
       }
     });
-
-    console.info('result', result);
 
     return result.slice(28,30);
   }
@@ -56,7 +54,7 @@ export class Questions {
     return q.map((question, index) => {
       return {
         text: question,
-        options: this.getOptions(path, index + 1),
+        options: a[index] === 's' ? [`${path}/opt${index + 1}1.svg`] : this.getOptions(path, index + 1),
         answer: a[index],
       }
     });
