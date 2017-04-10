@@ -78,7 +78,7 @@ export class QuestionPage {
     public q: Questions) {
 
     this.q.load().subscribe((data) => {
-      this.questions = data.questions;
+      this.questions = data;
       this.totalQuestions = this.countSteps();
 
       this.setQuestion();
@@ -116,8 +116,6 @@ export class QuestionPage {
   activityIsOver() {
     this.playSound('level_up');
     this.modalCtrl.create(EndActivityPage, { level: 'easy', points: 200 }).present();
-    // this.presentToast('PARABÉNS! :(', 'success');
-
   }
 
   wrongAnswer() {
