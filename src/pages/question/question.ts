@@ -6,12 +6,13 @@ import {
   transition,
   animate,
   keyframes
- } from '@angular/core';
+} from '@angular/core';
 
 import {
   NavController,
   ToastController,
   ModalController,
+  LoadingController,
 } from 'ionic-angular';
 
 import {
@@ -25,15 +26,15 @@ import { Questions } from '../../providers/questions';
   templateUrl: 'question.html',
   animations: [
     trigger('questionChange', [
-      state('sim' , style({
+      state('sim', style({
         // opacity: 1
       })),
       state('nao', style({
         // opacity: 0
       })),
       transition('* => sim', animate('1000ms ease-in-out', keyframes([
-        style({transform: 'rotate3d(0, 0, 1, -360deg)', opacity: '0.5', transformOrigin: 'center', offset: 0}),
-        style({transform: 'none', opacity: '1', transformOrigin: 'center', offset: 1})
+        style({ transform: 'rotate3d(0, 0, 1, -360deg)', opacity: '0.5', transformOrigin: 'center', offset: 0 }),
+        style({ transform: 'none', opacity: '1', transformOrigin: 'center', offset: 1 })
       ]))),
     ])
   ]
@@ -72,10 +73,13 @@ export class QuestionPage {
   questionChange: string = 'nao';
 
   constructor(
+    public loadCtrl: LoadingController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public q: Questions) {
+    public q: Questions
+  ) {
+    const loading = this.presentLoading();
 
     this.q.load().subscribe((data) => {
       this.questions = data;
@@ -85,6 +89,8 @@ export class QuestionPage {
 
       this.setQuestion();
       this.setOptions();
+
+      loading.dismiss();
     });
   }
 
@@ -215,5 +221,14 @@ export class QuestionPage {
 
   dismiss() {
     this.navCtrl.pop();
+  }
+
+  presentLoading() {
+    const loader = this.loadCtrl.create({
+      content: "Preparando as questões...",
+      duration: 10000
+    });
+    loader.present();
+    return loader;
   }
 }

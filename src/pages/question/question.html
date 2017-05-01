@@ -12,41 +12,42 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="previous-questions">
-    <span *ngFor="let p of previousQuestions; let first = first">
+  <div *ngIf="questions">
+    <div class="previous-questions">
+      <span *ngFor="let p of previousQuestions; let first = first">
       <img class="helper" *ngIf="!first" src="./assets/icon/rightArrow.svg">
       <img class="helper" [src]="getImage(p)">
     </span>
-  </div>
+    </div>
 
-  <!-- enunciado -->
-  <div class="pergunta" [@questionChange]="questionChange">
-    <span>{{question?.text}}</span>
-    <div>
-      <img [src]="getImage(question?.image)">
+    <!-- enunciado -->
+    <div class="pergunta" [@questionChange]="questionChange">
+      <span>{{question?.text}}</span>
+      <div>
+        <img [src]="getImage(question?.image)">
+      </div>
+    </div>
+
+    <!-- opcoes -->
+    <ion-list *ngIf="question" radio-group [(ngModel)]="choice">
+      <span>{{options?.text}}</span>
+      <div *ngIf="options?.options?.length > 2">
+        <ion-item *ngFor="let opt of options?.options; let i = index">
+          <ion-label>
+            <img [src]="getImage(opt)">
+          </ion-label>
+          <ion-radio value="{{i}}"></ion-radio>
+        </ion-item>
+      </div>
+      <div class="pergunta" *ngIf="options?.options?.length === 1">
+        <img [src]="getImage(options?.options[0])">
+      </div>
+    </ion-list>
+
+    <div [ngSwitch]="gameMode">
+      <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full>ENVIAR</button>
+      <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full>CONTINUAR</button>
+      <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full>ENTENDI</button>
     </div>
   </div>
-
-  <!-- opcoes -->
-  <ion-list *ngIf="question" radio-group [(ngModel)]="choice">
-    <span>{{options?.text}}</span>
-    <div *ngIf="options?.options?.length > 2">
-      <ion-item *ngFor="let opt of options?.options; let i = index">
-        <ion-label>
-          <img [src]="getImage(opt)">
-        </ion-label>
-        <ion-radio value="{{i}}"></ion-radio>
-      </ion-item>
-    </div>
-    <div class="pergunta" *ngIf="options?.options?.length === 1">
-      <img [src]="getImage(options?.options[0])">
-    </div>
-  </ion-list>
-
-  <div [ngSwitch]="gameMode">
-    <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full>ENVIAR</button>
-    <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full>CONTINUAR</button>
-    <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full>ENTENDI</button>
-  </div>
-
 </ion-content>
