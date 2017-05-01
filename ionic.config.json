@@ -1,6 +1,5 @@
 {
-  "name": "pemd-app",
-  "app_id": "2e357a76",
-  "typescript": true,
-  "v2": true
+  "name": "",
+  "app_id": "f33e3620",
+  "type": "ionic-angular"
 }
