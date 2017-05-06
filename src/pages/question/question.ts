@@ -81,10 +81,9 @@ export class QuestionPage {
   ) {
     const loading = this.presentLoading();
 
-    this.q.load().subscribe((data) => {
+    this.q.getQuestion('easy').subscribe((data) => {
       this.questions = data;
 
-      console.info('questions', this.questions);
       this.totalQuestions = this.countSteps();
 
       this.setQuestion();
