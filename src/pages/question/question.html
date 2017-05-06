@@ -42,6 +42,9 @@
       <div class="pergunta" *ngIf="options?.options?.length === 1">
         <img [src]="getImage(options?.options[0])">
       </div>
+      <div>
+        <pre> Resposta: {{options?.answer | json}} </pre>
+      </div>
     </ion-list>
   </div>
 </ion-content>

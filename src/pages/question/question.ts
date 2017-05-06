@@ -84,6 +84,8 @@ export class QuestionPage {
     this.q.getQuestion('easy').subscribe((data) => {
       this.questions = data;
 
+      console.info('questions', this.questions);
+
       this.totalQuestions = this.countSteps();
 
       this.setQuestion();
