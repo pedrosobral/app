@@ -16,19 +16,22 @@ export class Player {
   constructor(public storage: Storage, public http: Http) { }
 
   isDefaultGameSet() {
-    return Observable.fromPromise(this.data.then((res) => {
-      return res ? true : false;
-    }));
+    return Observable
+      .fromPromise(this.data
+        .then((res) => {
+          return res ? true : false;
+        }));
   }
 
   setDefaultGame() {
-    this.isDefaultGameSet().subscribe((player) => {
-      if (!player) {
-        this.save({
-          points: 0,
-        });
-      }
-    });
+    this.isDefaultGameSet()
+      .subscribe((player) => {
+        if (!player) {
+          this.save({
+            points: 0,
+          });
+        }
+      });
   }
 
   save(data) {
