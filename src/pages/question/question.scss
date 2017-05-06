@@ -2,9 +2,12 @@ page-question {
   font-family: 'Indie Flower', cursive;
   font-size: 18px;
 
+  ion-footer {
+    button {
+      margin: 0px !important;
+    }
+  }
   .pergunta {
-    // margin-top: 35px;
-    // position: absolute;
     text-align: center;
     width: 100%;
     margin-top: -20px;

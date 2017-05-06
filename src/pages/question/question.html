@@ -43,11 +43,13 @@
         <img [src]="getImage(options?.options[0])">
       </div>
     </ion-list>
-
-    <div [ngSwitch]="gameMode">
-      <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full>ENVIAR</button>
-      <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full>CONTINUAR</button>
-      <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full>ENTENDI</button>
-    </div>
   </div>
 </ion-content>
+
+<ion-footer [ngSwitch]="gameMode">
+  <!-- <div > -->
+    <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full large>ENVIAR</button>
+    <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full large>CONTINUAR</button>
+    <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full large>ENTENDI</button>
+  <!-- </div> -->
+</ion-footer>
