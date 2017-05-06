@@ -43,16 +43,15 @@
         <img [src]="getImage(options?.options[0])">
       </div>
       <div>
-        <pre> Resposta: {{options?.answer | json}} </pre>
+        <pre> answer: {{options?.answer | json}} </pre>
+        <pre> question: {{ question?.image?.split('/')[1] | json}} </pre>
       </div>
     </ion-list>
   </div>
 </ion-content>
 
 <ion-footer [ngSwitch]="gameMode">
-  <!-- <div > -->
     <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full large>ENVIAR</button>
     <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full large>CONTINUAR</button>
     <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full large>ENTENDI</button>
-  <!-- </div> -->
 </ion-footer>
