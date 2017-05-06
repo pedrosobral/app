@@ -15,19 +15,21 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item (click)="goToQuestions('basic0')">
+    <ion-item (click)="goToQuestions('easy', 0)">
       <ion-avatar item-left>
         <img src="./assets/icon/basic_0.svg">
       </ion-avatar>
       <h2>Básico 1</h2>
-      <p>Questões de substituição</p>
+      <p>Questões para inicar</p>
+      <p>Ganhe 200 XP ao completar cada rodada</p>
     </ion-item>
-    <ion-item (click)="goToQuestions('basic1')">
+    <ion-item (click)="goToQuestions('medium', 400)">
       <ion-avatar item-left>
         <img src="./assets/icon/basic_1.svg">
       </ion-avatar>
       <h2>Básico 2</h2>
-      <p>Questões de integração por partes</p>
+      <p>Questões mais elaboradas</p>
+      <p>Consquite 400 XP para liberar</p>
     </ion-item>
   </ion-list>
 
