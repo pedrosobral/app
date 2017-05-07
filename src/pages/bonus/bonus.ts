@@ -120,10 +120,10 @@ export class BonusPage {
   }
 
   getQuestion(index) {
-    return `/assets/bonus/b${index}/q.svg`;
+    return `./assets/bonus/b${index}/q.svg`;
   }
 
   getOption(index, option) {
-    return `assets/bonus/b${index}/${option}.svg`;
+    return `./assets/bonus/b${index}/${option}.svg`;
   }
 }
