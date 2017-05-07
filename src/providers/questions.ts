@@ -29,7 +29,8 @@ export class Questions {
 
   bonus() {
     return this.http.get('./assets/bonus/bonus.json')
-      .map(res => res.json().questions);
+      .map(res => res.json().questions)
+      .map(res => this.random(res));
   }
 
   load(): Observable<any> {

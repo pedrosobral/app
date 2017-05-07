@@ -2,6 +2,12 @@
   "questions": [
     { "index": 0, "answer": "d" },
     { "index": 1, "answer": "a" },
-    { "index": 2, "answer": "b" }
+    { "index": 2, "answer": "b" },
+    { "index": 3, "answer": "b" },
+    { "index": 4, "answer": "c" },
+    { "index": 5, "answer": "d" },
+    { "index": 6, "answer": "b" },
+    { "index": 7, "answer": "a" },
+    { "index": 8, "answer": "d" }
   ]
 }
