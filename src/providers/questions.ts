@@ -27,6 +27,11 @@ export class Questions {
     this._random = new Random(Random.engines.mt19937().autoSeed());
   }
 
+  bonus() {
+    return this.http.get('./assets/bonus/bonus.json')
+      .map(res => res.json().questions);
+  }
+
   load(): Observable<any> {
     return this.http.get(SPREADSHEET_URL + API_KEY)
       .map(res => res.json())
