@@ -1,13 +1,19 @@
 page-bonus {
   .pergunta {
     text-align: center;
-    width: 100%;
-    margin-top: -20px;
+    margin: 2px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #bfb3b2;
 
     img {
       height: 150px;
       width: 150px;
     }
+  }
+
+  ion-grid {
+    margin-left: -10px !important;
   }
 
   ion-row {
