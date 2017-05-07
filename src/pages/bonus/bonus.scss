@@ -1,0 +1,28 @@
+page-bonus {
+  .pergunta {
+    text-align: center;
+    width: 100%;
+    margin-top: -20px;
+
+    img {
+      height: 150px;
+      width: 150px;
+    }
+  }
+
+  ion-row {
+    margin-bottom: 10px;
+
+    ion-col {
+      button {
+        height: 150px !important;
+        width: 150px !important;
+
+        img {
+          height: 150px !important;
+          width: 150px !important;
+        }
+      }
+    }
+  }
+}

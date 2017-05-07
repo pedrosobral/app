@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Integrais imediatas</ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        Bônus: {{points}} XP
+      </button>
+      <button ion-button>
+        {{timer?.getTimeValues()?.toString(['seconds'])}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="pergunta">
+    <div>
+      <img [src]="getQuestion(question?.index)">
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row justify-content-around>
+      <ion-col col-5  (click)="click('a')">
+        <button outline class="option-button" ion-button [color]="showAnswer === 'a' ? 'secondary' : ''">
+          <img [src]="getOption(question?.index, 'a')">
+        </button>
+      </ion-col>
+      <ion-col col-5 (click)="click('b')">
+        <button outline  class="option-button" ion-button [color]="showAnswer === 'b' ? 'secondary' : ''">
+          <img [src]="getOption(question?.index, 'b')">
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-around>
+      <ion-col col-5 (click)="click('c')">
+        <button  outline class="option-button" ion-button [color]="showAnswer === 'c' ? 'secondary' : ''">
+          <img [src]="getOption(question?.index, 'c')">
+        </button>
+      </ion-col>
+      <ion-col col-5 (click)="click('d')">
+        <button outline  class="option-button" ion-button [color]="showAnswer === 'd' ? 'secondary' : ''">
+          <img [src]="getOption(question?.index, 'd')">
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

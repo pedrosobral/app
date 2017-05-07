@@ -35,6 +35,14 @@ export class HomePage {
     }
   }
 
+  goToBonus(points) {
+    if (this.points >= points) {
+      this.navCtrl.push('BonusPage');
+    } else {
+      this.showAlert(`Vc precisa de pelos menos ${points} XP para ter acesso a esse treinamento`);
+    }
+  }
+
   showAlert(msg) {
     const alert = this.alertCtrl.create({
       title: 'Ops! Consquite mais XPs',
@@ -43,6 +51,7 @@ export class HomePage {
     });
     alert.present();
   }
+
 
 
 }
