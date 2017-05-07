@@ -1,3 +1,21 @@
 page-end-activity {
 
+  .title {
+    text-align: center;
+    margin-bottom: 10vh;
+  }
+
+  .image {
+    text-align: center;
+    img {
+      height: 50vh;
+    }
+  }
+
+  ion-footer {
+    button {
+      margin: 0px !important;
+    }
+  }
+
 }

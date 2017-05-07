@@ -1,16 +1,24 @@
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar>
     <ion-title>Parabéns</ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
 <ion-content padding>
 
-  <span><h2>Atividade concluída! +{{points}} XP</h2></span>
+  <div class="title">
+    <h2>Atividade concluída! +{{points}} XP</h2>
+  </div>
 
-  <button ion-button color="secondary" full (click)="dismiss()">CONTINUAR</button>
+  <div class="image">
+    <img src="./assets/boy.png">
+  </div>
 
 </ion-content>
+
+<ion-footer>
+  <button ion-button color="secondary" full (click)="dismiss()" large>CONTINUAR</button>
+</ion-footer>

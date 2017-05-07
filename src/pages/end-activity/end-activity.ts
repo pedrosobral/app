@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 
 import { Player } from '../../providers/player';
 
+@IonicPage()
 @Component({
   selector: 'page-end-activity',
   templateUrl: 'end-activity.html'

@@ -15,10 +15,6 @@ import {
   LoadingController,
 } from 'ionic-angular';
 
-import {
-  EndActivityPage,
-} from '../end-activity/end-activity';
-
 import { Questions } from '../../providers/questions';
 
 @Component({
@@ -124,7 +120,7 @@ export class QuestionPage {
 
   activityIsOver() {
     this.playSound('level_up');
-    this.modalCtrl.create(EndActivityPage, { level: 'easy', points: 200 }).present();
+    this.modalCtrl.create('EndActivityPage', { level: 'easy', points: 200 }).present();
   }
 
   wrongAnswer() {

@@ -14,6 +14,7 @@ import { Player } from '../providers/player';
 })
 export class MyApp {
   rootPage = HomePage;
+  // rootPage = 'EndActivityPage';
 
   constructor(
     public player: Player,

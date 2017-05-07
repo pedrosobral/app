@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { Questions } from '../../providers/questions';
 
@@ -11,6 +11,7 @@ import Timer from 'easytimer';
   templateUrl: 'bonus.html',
 })
 export class BonusPage {
+  TIME_TO_ANSWER: number = 5;
   questions: any;
   question: any;
   timer: any;
@@ -20,10 +21,14 @@ export class BonusPage {
   questionIndex: number = 0;
   showAnswer: string;
 
+  isTimeout: boolean = false;
+
   constructor(
     public provider: Questions,
     public navCtrl: NavController,
-    public navParams: NavParams) { }
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+  ) { }
 
   ionViewDidLoad() {
     this.timer = new Timer();
@@ -55,10 +60,11 @@ export class BonusPage {
 
     // show correct answer
     this.showAnswer = this.question.answer;
+    this.isTimeout = true;
   }
 
   startTimer() {
-    this.timer.start({ countdown: true, startValues: { seconds: 10 } });
+    this.timer.start({ countdown: true, startValues: { seconds: this.TIME_TO_ANSWER } });
 
     this.timer.addEventListener('targetAchieved', (e) => {
       this.timeout();
@@ -67,7 +73,9 @@ export class BonusPage {
 
   nextQuestion() {
     if (this.questions && !this.questions.length) {
-
+      this.ionViewWillLeave();
+      this.playSound('level_up');
+      this.modalCtrl.create('EndActivityPage', { level: 'easy', points: this.points }).present();
       return;
     }
 
@@ -78,6 +86,14 @@ export class BonusPage {
 
   click(answer: string) {
     if (this.question.answer === answer) {
+
+      // user did not answer
+      if (this.isTimeout) {
+        this.isTimeout = false;
+        this.nextQuestion();
+        return;
+      }
+
       this.showAnswer = answer;
       this.playSound('right_answer');
 
@@ -87,6 +103,13 @@ export class BonusPage {
     } else {
       this.timeout();
     }
+  }
+
+  ionViewWillLeave() {
+    console.info('ionViewWillLeave::BonusPage');
+
+    this.timer.stop();
+    this.timer.removeEventListener('targetAchieved', null);
   }
 
   playSound(type) {

@@ -17,7 +17,6 @@ import { MyApp } from './app.component';
 import {
   HomePage,
   QuestionPage,
-  EndActivityPage,
 } from '../pages/pages';
 
 import { Questions } from '../providers/questions';
@@ -28,7 +27,6 @@ import { Player } from '../providers/player';
     MyApp,
     HomePage,
     QuestionPage,
-    EndActivityPage,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +40,6 @@ import { Player } from '../providers/player';
     MyApp,
     HomePage,
     QuestionPage,
-    EndActivityPage,
   ],
   providers: [SplashScreen, { provide: ErrorHandler, useClass: IonicErrorHandler }, Questions, Player]
 })
