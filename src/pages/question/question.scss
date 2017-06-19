@@ -4,16 +4,38 @@ page-question {
 
   ion-footer {
     button {
-      margin: 0px !important;
+      margin: 0 !important;
     }
   }
-  .pergunta {
+
+  .answers {
+    border: 10px groove color($colors, secondary);
     text-align: center;
-    width: 100%;
-    margin-top: -20px;
+    width: 53%;
+    img {
+      height: 80px;
+      width: 150px;
+    }
+  }
+
+  .wrong {
+    border: 10px groove color($colors, danger);
+  }
+
+  .alternativas {
+    text-align: center;
+    position: absolute;
+    bottom: 1px;
+  }
+
+  .pergunta {
+    border: 10px groove color($colors, secondary);
+    text-align: center;
+    // width: 100%;
+    // margin-top: -20px;
 
     img {
-      height: 150px;
+      height: 80px;
       width: 150px;
     }
   }
@@ -22,6 +44,18 @@ page-question {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+  }
+
+  .question-badge {
+    border: 10px groove #e3e3e3;
+    background-color: white;
+    height: 80px;
+    width: 150px;
+
+    img {
+      height: 150px;
+      width: 150px;
+    }
   }
 }
 

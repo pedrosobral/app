@@ -12,6 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpModule } from '@angular/http';
 
+import { DragulaModule } from 'ng2-dragula';
+
 import { MyApp } from './app.component';
 
 import {
@@ -34,6 +36,7 @@ import { Player } from '../providers/player';
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    DragulaModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

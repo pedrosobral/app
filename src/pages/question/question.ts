@@ -5,7 +5,8 @@ import {
   style,
   transition,
   animate,
-  keyframes
+  keyframes,
+  ViewChild
 } from '@angular/core';
 
 import {
@@ -14,6 +15,8 @@ import {
   ModalController,
   LoadingController,
 } from 'ionic-angular';
+
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { Questions } from '../../providers/questions';
 
@@ -36,6 +39,7 @@ import { Questions } from '../../providers/questions';
   ]
 })
 export class QuestionPage {
+  @ViewChild('resposta') resposta: any;
   // user choice
   choice: number;
 
@@ -68,19 +72,25 @@ export class QuestionPage {
   // questions change
   questionChange: string = 'nao';
 
+  q1 = [];
+  q2 = [];
+
+  answers = [];
+
+  isAnswerWrong: boolean = false;
+
   constructor(
     public loadCtrl: LoadingController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public q: Questions
+    public q: Questions,
+    public dnd: DragulaService,
   ) {
     const loading = this.presentLoading();
 
     this.q.getQuestion('easy').subscribe((data) => {
       this.questions = data;
-
-      console.info('questions', this.questions);
 
       this.totalQuestions = this.countSteps();
 
@@ -88,6 +98,14 @@ export class QuestionPage {
       this.setOptions();
 
       loading.dismiss();
+    });
+
+    dnd.drop.subscribe((data) => {
+      this.q1 = [this.q1.pop()];
+      console.info(this.q1);
+      this.choice = parseInt(this.q1 && this.q1[0] && this.q1[0].split('opt')[1][1], 10) - 1;
+      console.info('choice', this.choice, this.q1);
+      this.answer();
     });
   }
 
@@ -100,6 +118,7 @@ export class QuestionPage {
   }
 
   answer(isToContinue?) {
+    console.info('resposta', this.resposta);
     if (isToContinue || this.isAnswerCorrect(this.choice)) {
       this.saturation += Math.floor(100 / this.totalQuestions);
 
@@ -126,6 +145,8 @@ export class QuestionPage {
   wrongAnswer() {
     this.presentToast('ERRADO! :(', 'error');
 
+    setTimeout(() => this.q1 = [], 500);
+
     this.playSound('wrong_answer');
   }
 
@@ -135,6 +156,13 @@ export class QuestionPage {
     this.presentToast('CORRETO! :)', 'success');
 
     this.playSound('right_answer');
+
+
+    setTimeout(() => {
+      this.answers.push(this.q1[0]);
+      this.q1 = [];
+      this.continue();
+    }, 500);
   }
 
   playSound(type) {
@@ -145,9 +173,11 @@ export class QuestionPage {
   }
 
   nextQuestion() {
+    this.answers = [];
+
     this.isNextQuestion = false;
     this.questionChange = 'sim';
-    setTimeout(() => this.questionChange = 'nao', 1000);
+    setTimeout(() => this.questionChange = 'nao', 2000);
 
     this.setQuestion();
     this.setOptions();
@@ -159,7 +189,7 @@ export class QuestionPage {
     if (!this.isNextQuestion) {
       this.setOptions();
     } else {
-      this.nextQuestion();
+      setTimeout(() => this.nextQuestion(), 500);
     }
   }
 

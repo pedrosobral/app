@@ -11,25 +11,54 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div *ngIf="questions">
-    <div class="previous-questions">
+    <!-- <div class="previous-questions">
       <span *ngFor="let p of previousQuestions; let first = first">
-      <img class="helper" *ngIf="!first" src="./assets/icon/rightArrow.svg">
-      <img class="helper" [src]="getImage(p)">
-    </span>
-    </div>
+        <img class="helper" *ngIf="!first" src="./assets/icon/rightArrow.svg">
+        <img class="helper" [src]="getImage(p)">
+      </span>
+    </div> -->
 
     <!-- enunciado -->
-    <div class="pergunta" [@questionChange]="questionChange">
+    <!-- <div class="pergunta" [@questionChange]="questionChange">
       <span>{{question?.text}}</span>
       <div>
         <img [src]="getImage(question?.image)">
       </div>
     </div>
+    <div class="my-bag" [dragula]='"my-bag"' [dragulaModel]="q1">
+      <div *ngFor="let a of q1">
+        <img [src]="getImage(a)">
+      </div>
+    </div> -->
+
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col class="pergunta">
+          <img [src]="getImage(question?.image)">
+        </ion-col>
+        <ion-col [dragula]='"my-bag"' [dragulaModel]="q1" #resposta>
+          <div [ngClass]="{'pergunta': true}" *ngFor="let a of q1">
+            <img [src]="getImage(a)">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="answers" *ngFor="let a of answers">
+      <img [src]="getImage(a)">
+    </div>
 
     <!-- opcoes -->
-    <ion-list *ngIf="question" radio-group [(ngModel)]="choice">
+    <div class="alternativas">
+      <div [dragula]='"my-bag"' [dragulaModel]="options?.options">
+        <button class="question-badge" ion-button *ngFor="let opt of options?.options">
+        <img [src]="getImage(opt)">
+      </button>
+      </div>
+    </div>
+    <!-- <ion-list *ngIf="question" radio-group [(ngModel)]="choice">
       <span>{{options?.text}}</span>
       <div *ngIf="options?.options?.length > 2">
         <ion-item *ngFor="let opt of options?.options; let i = index">
@@ -46,12 +75,16 @@
         <pre> answer: {{options?.answer | json}} </pre>
         <pre> question: {{ question?.image?.split('/')[1] | json}} </pre>
       </div>
-    </ion-list>
+    </ion-list> -->
+  </div>
+  <div>
+    <pre> answer: {{options?.answer | json}} </pre>
+    <pre> question: {{ question?.image?.split('/')[1] | json}} </pre>
   </div>
 </ion-content>
-
+<!--
 <ion-footer [ngSwitch]="gameMode">
-    <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full large>ENVIAR</button>
-    <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full large>CONTINUAR</button>
-    <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full large>ENTENDI</button>
-</ion-footer>
+  <button *ngSwitchCase="'answer'" (click)="answer()" ion-button color="secondary" full large>ENVIAR</button>
+  <button *ngSwitchCase="'continue'" (click)="continue()" ion-button color="secondary" full large>CONTINUAR</button>
+  <button *ngSwitchCase="'entendi'" (click)="entendi()" ion-button color="secondary" full large>ENTENDI</button>
+</ion-footer> -->
